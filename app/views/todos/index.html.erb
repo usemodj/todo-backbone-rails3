@@ -1,0 +1,55 @@
+
+  <div id="todoapp">
+
+    <header>
+      <h1>Todos</h1>
+      <input id="new-todo" type="text" placeholder="What needs to be done?">
+    </header>
+
+    <section id="main">
+      <input id="toggle-all" type="checkbox">
+      <label for="toggle-all">Mark all as complete</label>
+      <ul id="todo-list"></ul>
+    </section>
+
+    <footer>
+      <a id="clear-completed">Clear completed</a>
+      <div id="todo-count"></div>
+    </footer>
+
+  </div>
+
+  <div id="instructions">
+    Double-click to edit a todo.
+  </div>
+
+  <div id="credits">
+    Created by
+    <br />
+    <a href="http://jgn.me/">J&eacute;r&ocirc;me Gravel-Niquet</a>.
+    <br />Rewritten by: <a href="http://addyosmani.github.com/todomvc">TodoMVC</a>.
+  </div>
+ 
+ <script>
+ 	$(function(){
+  		Backbone.history.start();
+		
+ 	});
+ </script> 
+ <!-- Templates -->
+
+  <script type="text/template" id="item-template">
+    <div class="view">
+      <input class="toggle" type="checkbox" {{#if done}} checked="checked" {{/if}}/>
+      <label>{{ content }}</label>
+      <a class="destroy"></a>
+    </div>
+    <input class="edit" type="text" value="{{ content }}" />
+  </script>
+
+  <script type="text/template" id="stats-template">
+    {{#if done}}
+      <a id="clear-completed">Clear {{done}} completed {{#if_eq done compare= 1}} item {{else}} items {{/if_eq}}</a>
+    {{/if}}
+    <div class="todo-count"><b>{{remaining}}</b> {{#if_eq remaining compare= 1}} item {{else}} items {{/if_eq}} left</div>
+  </script>
